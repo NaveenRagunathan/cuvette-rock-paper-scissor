@@ -1,0 +1,444 @@
+/* Choices Section - Triangular Formation */
+.choices-section {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.choices-triangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+}
+
+/* Connecting Lines */
+.choices-triangle::before,
+.choices-triangle::after {
+    content: '';
+    position: absolute;
+    background-color: #2C2C2C;
+    z-index: 0;
+}
+
+/* Line from Rock to Scissors (top horizontal) */
+.choices-triangle::before {
+    width: 120px;
+    height: 8px;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Line from Rock to Paper (left diagonal) */
+.choice-btn[data-choice="rock"]::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 100px;
+    background-color: #2C2C2C;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-30deg);
+    transform-origin: top center;
+    z-index: -1;
+}
+
+/* Line from Scissors to Paper (right diagonal) */
+.choice-btn[data-choice="scissors"]::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 100px;
+    background-color: #2C2C2C;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(30deg);
+    transform-origin: top center;
+    z-index: -1;
+}
+
+.choice-row {
+    display: flex;
+    gap: 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.bottom-row {
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Choice Buttons with Color-Coded Borders */
+.choice-btn {
+    background-color: white;
+    border: 15px solid;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.choice-btn[data-color="blue"] {
+    border-color: #0074B6;
+}
+
+.choice-btn[data-color="pink"] {
+    border-color: #BD00FF;
+}
+
+.choice-btn[data-color="orange"] {
+    border-color: #FFA943;
+}
+
+.choice-btn:hover {
+    transform: scale(1.1);
+}
+
+.choice-btn span {
+    font-size: 4rem;
+    filter: grayscale(100%) brightness(0);
+}
+
+/* Result Section */
+.result-section {
+    margin-top: 200px;
+    position: relative;
+}
+
+.result-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.result-choice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.pick-label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Choice Display with Glow Effect */
+.choice-display-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice-display {
+    background-color: white;
+    border: 15px solid;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Black filter for emoji content only */
+.emoji-black {
+    filter: grayscale(100%) brightness(0);
+}
+
+/* Winner Glow Effect */
+.choice-display-wrapper.winner::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(42, 168, 81, 0.5);
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow:
+        0 0 0 40px rgba(42, 168, 81, 0.35),
+        0 0 0 80px rgba(42, 168, 81, 0.2);
+}
+
+/* Result Message */
+.result-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    text-align: center;
+}
+
+.result-message h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#result-subtext {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+/* Next Button */
+#next-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 250px;
+}
+
+/* Celebration Page */
+.celebration-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #56C15A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.celebration-content {
+    text-align: center;
+    position: relative;
+}
+
+.trophy-container {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.trophy {
+    font-size: 12rem;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 300px;
+}
+
+.star {
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: twinkle 1.5s ease-in-out infinite;
+}
+
+.star-1 {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.star-2 {
+    top: 5%;
+    left: 50%;
+    animation-delay: 0.2s;
+    font-size: 4rem;
+}
+
+.star-3 {
+    top: 15%;
+    left: 75%;
+    animation-delay: 0.4s;
+}
+
+.star-4 {
+    top: 40%;
+    left: 10%;
+    animation-delay: 0.6s;
+    font-size: 2rem;
+}
+
+.star-5 {
+    top: 45%;
+    left: 85%;
+    animation-delay: 0.8s;
+    font-size: 2rem;
+}
+
+.star-6 {
+    top: 65%;
+    left: 25%;
+    animation-delay: 1s;
+    font-size: 1.5rem;
+}
+
+.star-7 {
+    top: 70%;
+    left: 70%;
+    animation-delay: 1.2s;
+    font-size: 1.5rem;
+}
+
+.celebration-content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.celebration-content h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+/* Animations */
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .choice-row {
+        gap: 50px;
+    }
+
+    .choice-btn {
+        width: 120px;
+        height: 120px;
+        border-width: 12px;
+    }
+
+    .choice-btn span {
+        font-size: 3rem;
+    }
+
+    .result-layout {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .choice-display {
+        width: 120px;
+        height: 120px;
+        border-width: 12px;
+        font-size: 3rem;
+    }
+
+    .choice-display-wrapper.winner::before {
+        width: 240px;
+        height: 240px;
+    }
+
+    .result-message h2 {
+        font-size: 2.5rem;
+    }
+
+    #next-btn {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .trophy {
+        font-size: 8rem;
+    }
+
+    .celebration-content h1 {
+        font-size: 3rem;
+    }
+
+    .celebration-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .choices-triangle {
+        gap: 30px;
+    }
+
+    .choice-row {
+        gap: 30px;
+    }
+
+    .choice-btn {
+        width: 90px;
+        height: 90px;
+        border-width: 10px;
+    }
+
+    .choice-btn span {
+        font-size: 2.2rem;
+    }
+
+    .choice-display {
+        width: 90px;
+        height: 90px;
+        border-width: 10px;
+        font-size: 2.2rem;
+    }
+
+    .choice-display-wrapper.winner::before {
+        width: 180px;
+        height: 180px;
+    }
+
+    .pick-label {
+        font-size: 1rem;
+    }
+
+    .result-message h2 {
+        font-size: 2rem;
+    }
+
+    #result-subtext {
+        font-size: 1rem;
+    }
+
+    .trophy {
+        font-size: 6rem;
+    }
+
+    .stars {
+        width: 300px;
+        height: 200px;
+    }
+
+    .star {
+        font-size: 2rem;
+    }
+
+    .celebration-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .celebration-content h2 {
+        font-size: 1.2rem;
+    }
+}

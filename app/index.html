@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+
+    <!-- Link CSS files -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/game.css">
+    <link rel="stylesheet" href="styles/modal.css">
+</head>
+
+<body>
+    <!-- Main Game Container -->
+    <div class="game-container">
+        <!-- Header with Title and Scores -->
+        <header class="game-header">
+            <div class="title-box">
+                <h1>ROCK<br>PAPER<br>SCISSORS</h1>
+            </div>
+            <div class="scores-box">
+                <div class="score-item">
+                    <p class="score-label">COMPUTER<br>SCORE</p>
+                    <h2 id="computer-score" class="score-value">0</h2>
+                </div>
+                <div class="score-item">
+                    <p class="score-label">YOUR<br>SCORE</p>
+                    <h2 id="user-score" class="score-value">0</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- Game Choices Section -->
+        <div class="choices-section" id="choices-section">
+            <div class="choices-triangle">
+                <div class="choice-row top-row">
+                    <button class="choice-btn" data-choice="rock" data-color="blue">
+                        <span>✊</span>
+                    </button>
+                    <button class="choice-btn" data-choice="scissors" data-color="pink">
+                        <span>✌️</span>
+                    </button>
+                </div>
+                <div class="choice-row bottom-row">
+                    <button class="choice-btn" data-choice="paper" data-color="orange">
+                        <span>✋</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Section (hidden initially) -->
+        <div class="result-section hidden" id="result-section">
+            <div class="result-layout">
+                <div class="result-choice-container">
+                    <p class="pick-label">YOU PICKED</p>
+                    <div class="choice-display-wrapper" id="user-choice-wrapper">
+                        <div class="choice-display" id="user-choice-display"></div>
+                    </div>
+                </div>
+
+                <div class="result-message">
+                    <h2 id="result-text">YOU WIN</h2>
+                    <p id="result-subtext">AGAINST PC</p>
+                    <button id="play-again-btn" class="btn-primary">PLAY AGAIN</button>
+                </div>
+
+                <div class="result-choice-container">
+                    <p class="pick-label">PC PICKED</p>
+                    <div class="choice-display-wrapper" id="pc-choice-wrapper">
+                        <div class="choice-display" id="computer-choice-display"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Button (only shown on win) -->
+            <button id="next-btn" class="btn-secondary hidden">NEXT</button>
+        </div>
+
+        <!-- Rules Button -->
+        <button class="rules-btn btn-secondary" id="rules-btn">RULES</button>
+    </div>
+
+    <!-- Rules Modal (hidden initially) -->
+    <div class="modal hidden" id="rules-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Game Rules</h2>
+                <button class="close-btn" id="close-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+                    <li>Agree ahead of time whether you'll count off "rock, paper, scissors, shoot" or just "rock,
+                        paper, scissors."</li>
+                    <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time.</li>
+                    <li>If both players lay down the same hand, each player lays down another hand.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Page (hidden initially) -->
+    <div class="celebration-page hidden" id="celebration-page">
+        <div class="celebration-content">
+            <div class="trophy-container">
+                <div class="stars">
+                    <span class="star star-1">★</span>
+                    <span class="star star-2">★</span>
+                    <span class="star star-3">★</span>
+                    <span class="star star-4">★</span>
+                    <span class="star star-5">★</span>
+                    <span class="star star-6">★</span>
+                    <span class="star star-7">★</span>
+                </div>
+                <div class="trophy">🏆</div>
+            </div>
+            <h1>HURRAY!!</h1>
+            <h2>YOU WON THE GAME</h2>
+            <button id="play-again-celebration" class="btn-primary">PLAY AGAIN</button>
+        </div>
+
+        <!-- Rules button on celebration page -->
+        <button class="rules-btn btn-secondary" id="rules-btn-celebration">RULES</button>
+    </div>
+
+    <!-- Link JavaScript files -->
+    <script src="scripts/storage.js"></script>
+    <script src="scripts/game.js"></script>
+    <script src="scripts/modal.js"></script>
+</body>
+
+</html>

@@ -1,16 +1,8 @@
 /**
  * Storage utility module for managing game scores in localStorage
  * Handles all localStorage operations with error handling and validation
+ * Note: Global constants (STORAGE_KEYS, MAX_SCORE) are defined in config.js
  */
-
-// Storage keys for localStorage
-const STORAGE_KEYS = {
-    USER_SCORE: 'rps_user_score',
-    COMPUTER_SCORE: 'rps_computer_score'
-};
-
-// Maximum allowed score
-const MAX_SCORE = 999;
 
 /**
  * Check if localStorage is available and working
@@ -41,8 +33,8 @@ function saveScore(key, value) {
         return false;
     }
 
-    // Clamp value to max score
-    const clampedValue = Math.min(Math.max(0, value), MAX_SCORE);
+    // Clamp value to max score (MAX_SCORE is defined in game.js)
+    const clampedValue = Math.min(Math.max(0, value), window.MAX_SCORE || 999);
 
     if (!isLocalStorageAvailable()) {
         console.warn('Cannot save score - localStorage unavailable');
@@ -97,8 +89,8 @@ function loadScore(key) {
             return 0;
         }
 
-        // Clamp to valid range
-        return Math.min(Math.max(0, parsedValue), MAX_SCORE);
+        // Clamp to valid range (MAX_SCORE is defined in game.js)
+        return Math.min(Math.max(0, parsedValue), window.MAX_SCORE || 999);
     } catch (e) {
         console.error('Error loading score:', e);
         return 0;
@@ -110,8 +102,8 @@ function loadScore(key) {
  * @returns {Object} Object with userScore and computerScore
  */
 function initializeScores() {
-    const userScore = loadScore(STORAGE_KEYS.USER_SCORE);
-    const computerScore = loadScore(STORAGE_KEYS.COMPUTER_SCORE);
+    const userScore = loadScore(window.STORAGE_KEYS.USER_SCORE);
+    const computerScore = loadScore(window.STORAGE_KEYS.COMPUTER_SCORE);
 
     return {
         userScore,
@@ -124,8 +116,8 @@ function initializeScores() {
  * @returns {boolean} True if reset was successful
  */
 function resetScores() {
-    const userSuccess = saveScore(STORAGE_KEYS.USER_SCORE, 0);
-    const computerSuccess = saveScore(STORAGE_KEYS.COMPUTER_SCORE, 0);
+    const userSuccess = saveScore(window.STORAGE_KEYS.USER_SCORE, 0);
+    const computerSuccess = saveScore(window.STORAGE_KEYS.COMPUTER_SCORE, 0);
 
     return userSuccess && computerSuccess;
 }
@@ -137,7 +129,7 @@ function resetScores() {
 function getStorageStatus() {
     return {
         available: isLocalStorageAvailable(),
-        userScore: loadScore(STORAGE_KEYS.USER_SCORE),
-        computerScore: loadScore(STORAGE_KEYS.COMPUTER_SCORE)
+        userScore: loadScore(window.STORAGE_KEYS.USER_SCORE),
+        computerScore: loadScore(window.STORAGE_KEYS.COMPUTER_SCORE)
     };
 }

@@ -1,16 +1,13 @@
 /**
  * Rock Paper Scissors Game - Main Game Logic
  * Handles all game state, user interactions, and UI updates
+ * Note: Global constants (STORAGE_KEYS, MAX_SCORE) are defined in config.js
  */
 
 // Game state
 let userScore = 0;
 let computerScore = 0;
 let isGameInProgress = false;
-
-// Game configuration
-const MAX_SCORE = 999;
-const DEBOUNCE_DELAY = 500;
 
 // Game choices
 const CHOICES = ['rock', 'paper', 'scissors'];
@@ -89,16 +86,16 @@ function initGame() {
 
         // Load scores from localStorage with error handling
         const scores = initializeScores();
-        userScore = Math.min(scores.userScore, MAX_SCORE);
-        computerScore = Math.min(scores.computerScore, MAX_SCORE);
+        userScore = Math.min(scores.userScore, window.MAX_SCORE);
+        computerScore = Math.min(scores.computerScore, window.MAX_SCORE);
 
         // Update score display
         updateScoreDisplay();
 
-        // Add event listeners to choice buttons with debouncing
+        // Add event listeners to choice buttons
         if (choiceButtons && choiceButtons.length > 0) {
             choiceButtons.forEach(button => {
-                button.addEventListener('click', debounce(handleUserChoice, DEBOUNCE_DELAY));
+                button.addEventListener('click', handleUserChoice);
             });
         }
 
@@ -119,23 +116,6 @@ function initGame() {
     }
 }
 
-/**
- * Debounce function to prevent rapid clicking
- * @param {Function} func - Function to debounce
- * @param {number} wait - Wait time in milliseconds
- * @returns {Function} Debounced function
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
 
 /**
  * Handle user's choice when they click a button
@@ -241,14 +221,14 @@ function determineWinner(userChoice, computerChoice) {
 function updateScores(result) {
     try {
         if (result === 'win') {
-            userScore = Math.min(userScore + 1, MAX_SCORE);
-            const saved = saveScore(STORAGE_KEYS.USER_SCORE, userScore);
+            userScore = Math.min(userScore + 1, window.MAX_SCORE);
+            const saved = saveScore(window.STORAGE_KEYS.USER_SCORE, userScore);
             if (!saved) {
                 console.warn('Failed to save user score');
             }
         } else if (result === 'lose') {
-            computerScore = Math.min(computerScore + 1, MAX_SCORE);
-            const saved = saveScore(STORAGE_KEYS.COMPUTER_SCORE, computerScore);
+            computerScore = Math.min(computerScore + 1, window.MAX_SCORE);
+            const saved = saveScore(window.STORAGE_KEYS.COMPUTER_SCORE, computerScore);
             if (!saved) {
                 console.warn('Failed to save computer score');
             }

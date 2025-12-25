@@ -151,3 +151,45 @@
         font-size: 0.9rem;
     }
 }
+
+/* Reset Confirmation Modal Specific Styles */
+.reset-modal-content {
+    max-width: 400px;
+}
+
+.reset-warning {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #E74C3C;
+    margin-bottom: 25px;
+}
+
+.reset-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.reset-actions button {
+    flex: 1;
+    max-width: 150px;
+}
+
+@media (max-width: 480px) {
+    .reset-warning {
+        font-size: 0.95rem;
+        padding: 15px;
+    }
+
+    .reset-actions {
+        flex-direction: column;
+    }
+
+    .reset-actions button {
+        max-width: 100%;
+    }
+}

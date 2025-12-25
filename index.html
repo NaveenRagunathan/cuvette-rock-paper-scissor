@@ -79,6 +79,9 @@
             <button id="next-btn" class="btn-secondary hidden">NEXT</button>
         </div>
 
+        <!-- Reset Scores Button -->
+        <button class="reset-btn btn-secondary" id="reset-btn">RESET SCORES</button>
+
         <!-- Rules Button -->
         <button class="rules-btn btn-secondary" id="rules-btn">RULES</button>
     </div>
@@ -98,6 +101,24 @@
                     <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time.</li>
                     <li>If both players lay down the same hand, each player lays down another hand.</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reset Confirmation Modal (hidden initially) -->
+    <div class="modal hidden" id="reset-modal">
+        <div class="modal-content reset-modal-content">
+            <div class="modal-header">
+                <h2>Reset Scores?</h2>
+                <button class="close-btn" id="close-reset-modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <p class="reset-warning">This will reset both your score and the computer's score to 0. This action
+                    cannot be undone.</p>
+                <div class="reset-actions">
+                    <button class="btn-secondary" id="cancel-reset">CANCEL</button>
+                    <button class="btn-danger" id="confirm-reset">RESET</button>
+                </div>
             </div>
         </div>
     </div>
@@ -122,15 +143,18 @@
             <button id="play-again-celebration" class="btn-primary">PLAY AGAIN</button>
         </div>
 
+        <!-- Reset Scores button on celebration page -->
+        <button class="reset-btn btn-secondary" id="reset-btn-celebration">RESET SCORES</button>
+
         <!-- Rules button on celebration page -->
         <button class="rules-btn btn-secondary" id="rules-btn-celebration">RULES</button>
     </div>
 
-    <!-- Link JavaScript files - config.js MUST load first -->
     <script src="scripts/config.js"></script>
     <script src="scripts/storage.js"></script>
     <script src="scripts/game.js"></script>
     <script src="scripts/modal.js"></script>
+    <script src="scripts/reset.js"></script>
 </body>
 
 </html>

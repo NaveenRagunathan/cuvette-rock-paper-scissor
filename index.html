@@ -5,96 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
-
-    <!-- Link CSS files -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/game.css">
-    <link rel="stylesheet" href="styles/modal.css">
 </head>
 
 <body>
-    <!-- Main Game Container -->
-    <div class="game-container">
-        <!-- Header with Title and Scores -->
-        <header class="game-header">
-            <div class="title-box">
-                <h1>ROCK<br>PAPER<br>SCISSORS</h1>
+    <!-- ========== MAIN GAME SCREEN ========== -->
+    <div class="game-container" id="game-screen">
+        <!-- Header -->
+        <header class="header">
+            <div class="title">
+                <span>ROCK</span>
+                <span>PAPER</span>
+                <span>SCISSORS</span>
             </div>
-            <div class="scores-box">
-                <div class="score-item">
-                    <p class="score-label">COMPUTER<br>SCORE</p>
-                    <h2 id="computer-score" class="score-value">0</h2>
+            <div class="scores">
+                <div class="score-box">
+                    <div class="score-label">COMPUTER<br>SCORE</div>
+                    <div class="score-value" id="computer-score">0</div>
                 </div>
-                <div class="score-item">
-                    <p class="score-label">YOUR<br>SCORE</p>
-                    <h2 id="user-score" class="score-value">0</h2>
+                <div class="score-box">
+                    <div class="score-label">YOUR<br>SCORE</div>
+                    <div class="score-value" id="user-score">0</div>
                 </div>
             </div>
         </header>
 
-        <!-- Game Choices Section -->
-        <div class="choices-section" id="choices-section">
-            <div class="choices-triangle">
-                <div class="choice-row top-row">
-                    <button class="choice-btn" data-choice="rock" data-color="blue">
-                        <span>✊</span>
-                    </button>
-                    <button class="choice-btn" data-choice="scissors" data-color="pink">
-                        <span>✌️</span>
-                    </button>
-                </div>
-                <div class="choice-row bottom-row">
-                    <button class="choice-btn" data-choice="paper" data-color="orange">
-                        <span>✋</span>
-                    </button>
-                </div>
+        <!-- Choice Buttons -->
+        <div class="choices">
+            <svg class="triangle-lines" viewBox="0 0 420 340">
+                <line x1="45" y1="25" x2="355" y2="25" />
+                <line x1="65" y1="55" x2="210" y2="295" />
+                <line x1="355" y1="55" x2="210" y2="295" />
+            </svg>
+            <div class="choice-grid">
+                <button class="choice-btn rock" data-choice="rock">
+                    <span class="icon">✊</span>
+                </button>
+                <button class="choice-btn scissors" data-choice="scissors">
+                    <span class="icon">✌️</span>
+                </button>
+                <button class="choice-btn paper" data-choice="paper">
+                    <span class="icon">✋</span>
+                </button>
             </div>
         </div>
-
-        <!-- Result Section (hidden initially) -->
-        <div class="result-section hidden" id="result-section">
-            <div class="result-layout">
-                <div class="result-choice-container">
-                    <p class="pick-label">YOU PICKED</p>
-                    <div class="choice-display-wrapper" id="user-choice-wrapper">
-                        <div class="choice-display" id="user-choice-display"></div>
-                    </div>
-                </div>
-
-                <div class="result-message">
-                    <h2 id="result-text">YOU WIN</h2>
-                    <p id="result-subtext">AGAINST PC</p>
-                    <button id="play-again-btn" class="btn-primary">PLAY AGAIN</button>
-                </div>
-
-                <div class="result-choice-container">
-                    <p class="pick-label">PC PICKED</p>
-                    <div class="choice-display-wrapper" id="pc-choice-wrapper">
-                        <div class="choice-display" id="computer-choice-display"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Next Button (only shown on win) -->
-            <button id="next-btn" class="btn-secondary hidden">NEXT</button>
-        </div>
-
-        <!-- Reset Scores Button -->
-        <button class="reset-btn btn-secondary" id="reset-btn">RESET SCORES</button>
 
         <!-- Rules Button -->
-        <button class="rules-btn btn-secondary" id="rules-btn">RULES</button>
+        <button class="btn-rules" id="rules-btn">RULES</button>
     </div>
 
-    <!-- Rules Modal (hidden initially) -->
-    <div class="modal hidden" id="rules-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Game Rules</h2>
-                <button class="close-btn" id="close-modal">✕</button>
+    <!-- ========== RESULT SCREEN ========== -->
+    <div class="game-container hidden" id="result-screen">
+        <!-- Header (same as main) -->
+        <header class="header">
+            <div class="title">
+                <span>ROCK</span>
+                <span>PAPER</span>
+                <span>SCISSORS</span>
             </div>
-            <div class="modal-body">
-                <ul>
+            <div class="scores">
+                <div class="score-box">
+                    <div class="score-label">COMPUTER<br>SCORE</div>
+                    <div class="score-value" id="computer-score-result">0</div>
+                </div>
+                <div class="score-box">
+                    <div class="score-label">YOUR<br>SCORE</div>
+                    <div class="score-value" id="user-score-result">0</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Result Display -->
+        <div class="result-display">
+            <div class="result-player">
+                <div class="pick-label">YOU PICKED</div>
+                <div class="pick-circle" id="user-pick">
+                    <span class="icon">✊</span>
+                </div>
+            </div>
+
+            <div class="result-center">
+                <div class="result-text" id="result-text">YOU WIN</div>
+                <div class="result-subtext" id="result-subtext">AGAINST PC</div>
+                <button class="btn-play" id="play-again-btn">PLAY AGAIN</button>
+            </div>
+
+            <div class="result-player">
+                <div class="pick-label">PC PICKED</div>
+                <div class="pick-circle" id="pc-pick">
+                    <span class="icon">✊</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Buttons -->
+        <button class="btn-rules" id="rules-btn-result">RULES</button>
+        <button class="btn-next hidden" id="next-btn">NEXT</button>
+    </div>
+
+    <!-- ========== CELEBRATION SCREEN ========== -->
+    <div class="celebration-screen hidden" id="celebration-screen">
+        <div class="celebration-content">
+            <div class="trophy-area">
+                <div class="stars">
+                    <span class="star s1">★</span>
+                    <span class="star s2">★</span>
+                    <span class="star s3">★</span>
+                    <span class="star s4">★</span>
+                    <span class="star s5">★</span>
+                    <span class="star s6">★</span>
+                    <span class="star s7">★</span>
+                    <span class="star s8">★</span>
+                    <span class="star s9">★</span>
+                </div>
+                <div class="trophy">🏆</div>
+            </div>
+            <h1 class="hurray">HURRAY!!</h1>
+            <p class="won-text">YOU WON THE GAME</p>
+            <button class="btn-play" id="play-again-celebration">PLAY AGAIN</button>
+        </div>
+        <button class="btn-rules" id="rules-btn-celebration">RULES</button>
+    </div>
+
+    <!-- ========== RULES MODAL ========== -->
+    <div class="modal hidden" id="rules-modal">
+        <div class="modal-wrapper">
+            <button class="close-btn" id="close-modal">✕</button>
+            <div class="modal-content">
+                <h2 class="modal-title">Game Rules</h2>
+                <ul class="rules-list">
                     <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
                     <li>Agree ahead of time whether you'll count off "rock, paper, scissors, shoot" or just "rock,
                         paper, scissors."</li>
@@ -105,56 +147,7 @@
         </div>
     </div>
 
-    <!-- Reset Confirmation Modal (hidden initially) -->
-    <div class="modal hidden" id="reset-modal">
-        <div class="modal-content reset-modal-content">
-            <div class="modal-header">
-                <h2>Reset Scores?</h2>
-                <button class="close-btn" id="close-reset-modal">✕</button>
-            </div>
-            <div class="modal-body">
-                <p class="reset-warning">This will reset both your score and the computer's score to 0. This action
-                    cannot be undone.</p>
-                <div class="reset-actions">
-                    <button class="btn-secondary" id="cancel-reset">CANCEL</button>
-                    <button class="btn-danger" id="confirm-reset">RESET</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Celebration Page (hidden initially) -->
-    <div class="celebration-page hidden" id="celebration-page">
-        <div class="celebration-content">
-            <div class="trophy-container">
-                <div class="stars">
-                    <span class="star star-1">★</span>
-                    <span class="star star-2">★</span>
-                    <span class="star star-3">★</span>
-                    <span class="star star-4">★</span>
-                    <span class="star star-5">★</span>
-                    <span class="star star-6">★</span>
-                    <span class="star star-7">★</span>
-                </div>
-                <div class="trophy">🏆</div>
-            </div>
-            <h1>HURRAY!!</h1>
-            <h2>YOU WON THE GAME</h2>
-            <button id="play-again-celebration" class="btn-primary">PLAY AGAIN</button>
-        </div>
-
-        <!-- Reset Scores button on celebration page -->
-        <button class="reset-btn btn-secondary" id="reset-btn-celebration">RESET SCORES</button>
-
-        <!-- Rules button on celebration page -->
-        <button class="rules-btn btn-secondary" id="rules-btn-celebration">RULES</button>
-    </div>
-
-    <script src="scripts/config.js"></script>
-    <script src="scripts/storage.js"></script>
     <script src="scripts/game.js"></script>
-    <script src="scripts/modal.js"></script>
-    <script src="scripts/reset.js"></script>
 </body>
 
 </html>

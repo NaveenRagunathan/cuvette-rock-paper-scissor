@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* ========== RESET & BASE ========== */
 * {
     margin: 0;
     padding: 0;
@@ -6,199 +6,692 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #56C15A;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #8CC461;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: white;
-    padding: 20px;
 }
 
-.game-container {
-    width: 100%;
-    max-width: 900px;
-    padding: 20px;
-    position: relative;
-}
-
-/* Header with Inline Layout */
-.game-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 3px solid white;
-    border-radius: 15px;
-    padding: 20px 30px;
-    margin-bottom: 60px;
-}
-
-.title-box h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: 1px;
-}
-
-.scores-box {
-    display: flex;
-    gap: 25px;
-}
-
-.score-item {
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px 35px;
-    text-align: center;
-    min-width: 120px;
-}
-
-.score-label {
-    font-size: 0.75rem;
-    color: #2C2C2C;
-    font-weight: 600;
-    letter-spacing: 1px;
-    line-height: 1.3;
-    margin-bottom: 8px;
-}
-
-.score-value {
-    font-size: 3.5rem;
-    color: #2C2C2C;
-    font-weight: 700;
-}
-
-/* Utility Classes */
 .hidden {
     display: none !important;
 }
 
-/* Button Styles */
-.btn-primary {
-    padding: 12px 40px;
-    background-color: white;
-    color: #2C2C2C;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
+/* ========== GAME CONTAINER ========== */
+.game-container {
+    height: 100vh;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.btn-secondary {
-    padding: 10px 30px;
-    background-color: transparent;
-    color: white;
+/* ========== HEADER ========== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border: 2px solid white;
-    border-radius: 8px;
-    font-size: 0.95rem;
+    border-radius: 13px;
+    padding: 20px 40px;
+    max-width: 800px;
+    margin: 40px auto 0;
+    gap: 80px;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
     font-weight: 600;
-    cursor: pointer;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
 }
 
-.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
+.scores {
+    display: flex;
+    gap: 20px;
 }
 
-.btn-danger {
-    padding: 10px 30px;
-    background-color: #E74C3C;
-    color: white;
-    border: 2px solid #E74C3C;
-    border-radius: 8px;
-    font-size: 0.95rem;
+.score-box {
+    background: #FFFFFF;
+    color: #252525;
+    border-radius: 9px;
+    width: 139px;
+    height: 128px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.score-label {
+    font-size: 17px;
     font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+    margin-bottom: 6px;
+    color: #656565;
+}
+
+.score-value {
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 80px;
+}
+
+/* ========== CHOICES SECTION ========== */
+.choices {
+    position: relative;
+    max-width: 500px;
+    margin: 60px auto 0;
+}
+
+.triangle-lines {
+    position: absolute;
+    width: 100%;
+    height: 360px;
+    top: 5px;
+    left: 0;
+    z-index: 0;
+}
+
+.triangle-lines line {
+    stroke: rgba(0, 0, 0, 0.64);
+    stroke-width: 15;
+    stroke-linecap: round;
+}
+
+.choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 30px 120px;
+    justify-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.choice-btn {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 16px solid;
+    background: white;
     cursor: pointer;
-    letter-spacing: 2px;
-    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 3px 0px 21px 1px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(-1px 1px 11px rgba(0, 0, 0, 0.35));
 }
 
-.btn-danger:hover {
-    background-color: #C0392B;
-    border-color: #C0392B;
-    transform: scale(1.05);
+.choice-btn:hover {
+    transform: scale(1.1);
 }
 
-/* Reset Scores Button */
-.reset-btn {
+.choice-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+}
+
+.choice-btn .icon {
+    font-size: 2.5rem;
+    filter: grayscale(100%) brightness(0);
+}
+
+/* Color Borders */
+.choice-btn.rock {
+    border-color: #0074B6;
+}
+
+.choice-btn.rock:hover {
+    box-shadow: 0 0 20px rgba(0, 116, 182, 0.6);
+}
+
+.choice-btn.scissors {
+    border-color: #BD00FF;
+}
+
+.choice-btn.scissors:hover {
+    box-shadow: 0 0 20px rgba(189, 0, 255, 0.6);
+}
+
+.choice-btn.paper {
+    border-color: #FFA943;
+    grid-column: 1 / -1;
+    margin-top: 50px;
+}
+
+.choice-btn.paper:hover {
+    box-shadow: 0 0 20px rgba(255, 169, 67, 0.6);
+}
+
+/* ========== BUTTONS ========== */
+.btn-rules {
     position: fixed;
     bottom: 30px;
-    left: 30px;
+    right: 30px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 119px;
+    height: 40px;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-/* Rules Button */
-.rules-btn {
+.btn-rules:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-next {
     position: fixed;
+    bottom: 30px;
+    right: 160px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 119px;
+    height: 40px;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-next:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-play {
+    background: white;
+    color: #6B6B6B;
+    border: none;
+    border-radius: 9px;
+    padding: 15px 45px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-play:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn-play:active {
+    transform: scale(0.98);
+}
+
+/* ========== RESULT SCREEN ========== */
+.result-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-top: 100px;
+}
+
+.result-player {
+    text-align: center;
+}
+
+.pick-label {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.pick-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 16px solid;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: inset 3px 0px 21px 1px rgba(0, 0, 0, 0.2);
+    filter: drop-shadow(-1px 1px 11px rgba(0, 0, 0, 0.35));
+}
+
+.pick-circle .icon {
+    font-size: 4rem;
+    filter: grayscale(100%) brightness(0);
+}
+
+/* Winner Glow Effect - Large, soft, dominant */
+.pick-circle.winner {
+    box-shadow:
+        0 0 0 40px rgba(58, 173, 89, 0.15),
+        0 0 0 80px rgba(58, 173, 89, 0.1),
+        0 0 0 120px rgba(58, 173, 89, 0.06),
+        0 0 0 160px rgba(58, 173, 89, 0.03);
+}
+
+/* Color classes for pick circles */
+.pick-circle.rock {
+    border-color: #0074B6;
+}
+
+.pick-circle.scissors {
+    border-color: #BD00FF;
+}
+
+.pick-circle.paper {
+    border-color: #FFA943;
+}
+
+.result-center {
+    text-align: center;
+    min-width: 200px;
+}
+
+.result-text {
+    font-size: 39px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.result-subtext {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    margin-bottom: 30px;
+}
+
+/* ========== CELEBRATION SCREEN ========== */
+.celebration-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #89C15E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.celebration-content {
+    text-align: center;
+}
+
+.trophy-area {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.trophy {
+    font-size: 10rem;
+    line-height: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.stars {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 504px;
+    height: 297px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    color: rgba(217, 217, 217, 0.83);
+}
+
+/* Star sizes and positions matching Figma Frame 9 */
+/* Star 1: Large left star - 115px */
+.star.s1 {
+    font-size: 115px;
+    top: 38%;
+    left: 0;
+}
+
+/* Star 2: Large top-right star - 103px */
+.star.s2 {
+    font-size: 103px;
+    top: 0;
+    right: 10%;
+}
+
+/* Star 3: Small top star - 32px */
+.star.s3 {
+    font-size: 32px;
+    top: 0;
+    left: 23%;
+}
+
+/* Star 4: Small center star - 32px */
+.star.s4 {
+    font-size: 32px;
+    top: 12%;
+    left: 44%;
+}
+
+/* Star 5: Small bottom-left star - 32px */
+.star.s5 {
+    font-size: 32px;
+    bottom: 0;
+    left: 21%;
+}
+
+/* Star 6: Large right star - 130px */
+.star.s6 {
+    font-size: 130px;
+    top: 53%;
+    right: 0;
+}
+
+/* Star 7: Small right star - 32px */
+.star.s7 {
+    font-size: 32px;
+    top: 29%;
+    right: 0;
+}
+
+/* Star 8: Small center-top star - 32px (duplicate position with s4) */
+.star.s8 {
+    font-size: 32px;
+    top: 12%;
+    left: 44%;
+}
+
+/* Star 9: Medium star - 68px */
+.star.s9 {
+    font-size: 68px;
+    top: 17%;
+    left: 14%;
+}
+
+.hurray {
+    font-size: 91px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.won-text {
+    font-size: 41px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 35px;
+}
+
+.celebration-screen .btn-rules {
+    position: absolute;
     bottom: 30px;
     right: 30px;
 }
 
-/* Responsive Design */
+/* ========== RULES MODAL ========== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 1000;
+    padding: 20px;
+    pointer-events: none;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-wrapper {
+    pointer-events: auto;
+    position: relative;
+    margin-right: 30px;
+    margin-bottom: 80px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal.hidden {
+    animation: fadeOut 0.2s ease;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* Red X button - OUTSIDE modal at top-right corner */
+.close-btn {
+    position: absolute;
+    top: -25px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #FF0000;
+    border: 5px solid white;
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.2s ease;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.close-btn:hover {
+    background: #C0392B;
+    transform: scale(1.1);
+}
+
+.modal-content {
+    background: #004429;
+    border: 7px solid white;
+    border-radius: 13px;
+    width: 278px;
+    padding: 25px 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.modal-title {
+    font-size: 29px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-list li {
+    position: relative;
+    padding: 10px 0 10px 18px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+}
+
+.rules-list li:last-child {
+    padding-bottom: 0;
+}
+
+/* Yellow square bullet */
+.rules-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 8px;
+    height: 8px;
+    background: #FFD600;
+    border-radius: 0;
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
-    .game-header {
+    .game-container {
+        padding: 20px;
+    }
+
+    .header {
         flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-
-    .title-box h1 {
-        font-size: 1.5rem;
-    }
-
-    .scores-box {
         gap: 15px;
+        padding: 15px;
     }
 
-    .score-item {
-        padding: 12px 25px;
-        min-width: 100px;
+    .title {
+        font-size: 1.3rem;
+        text-align: center;
+        flex-direction: row;
+        gap: 8px;
+    }
+
+    .score-box {
+        padding: 8px 20px;
+        min-width: 80px;
     }
 
     .score-value {
+        font-size: 2.3rem;
+    }
+
+    .choice-btn {
+        width: 100px;
+        height: 100px;
+        border-width: 10px;
+    }
+
+    .choice-btn .icon {
         font-size: 2.5rem;
     }
 
-    .rules-btn {
-        bottom: 20px;
-        right: 20px;
-        padding: 8px 20px;
-        font-size: 0.85rem;
+    .result-display {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 60px;
     }
 
-    .reset-btn {
-        bottom: 20px;
-        left: 20px;
-        padding: 8px 20px;
-        font-size: 0.85rem;
+    .pick-circle {
+        width: 110px;
+        height: 110px;
+    }
+
+    .result-text {
+        font-size: 2rem;
+    }
+
+    .btn-next {
+        right: 140px;
+        padding: 10px 25px;
+    }
+
+    .btn-rules {
+        padding: 10px 25px;
+    }
+
+    .trophy {
+        font-size: 7rem;
+    }
+
+    .hurray {
+        font-size: 2.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .title-box h1 {
-        font-size: 1.2rem;
+    .choice-btn {
+        width: 85px;
+        height: 85px;
+        border-width: 8px;
     }
 
-    .score-label {
-        font-size: 0.65rem;
-    }
-
-    .score-value {
+    .choice-btn .icon {
         font-size: 2rem;
     }
 
-    .score-item {
-        padding: 10px 20px;
-        min-width: 80px;
+    .pick-circle {
+        width: 90px;
+        height: 90px;
+        border-width: 10px;
+    }
+
+    .pick-circle .icon {
+        font-size: 2.5rem;
+    }
+
+    .result-text {
+        font-size: 1.6rem;
+    }
+
+    .btn-next {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .trophy {
+        font-size: 5rem;
+    }
+
+    .hurray {
+        font-size: 2rem;
+    }
+
+    .won-text {
+        font-size: 1rem;
     }
 }
